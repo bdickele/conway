@@ -33,7 +33,7 @@ object Pattern {
     def patternListAcc(fileNames: List[File], acc: List[Pattern]): List[Pattern] = fileNames match {
       case Nil => acc
       case fileName :: xs => {
-        val fileLines = Source.fromFile(fileName).getLines.toList
+        val fileLines = Source.fromFile(fileName).getLines().toList
         val patternName = fileLines.head
         val gridLines = fileLines.tail
         val nbLines = gridLines.size
@@ -44,8 +44,8 @@ object Pattern {
         var j = 0
         for (i <- 0 until nbLines) {
           j = 0
-          for (c <- gridLines(i).toCharArray) {
-            if (c == '0' || c == 'O' || c == 'o') patternGrid(i)(j) = 1
+          for (c <- gridLines(i).trim.toCharArray) {
+            if (c == '0' || c == 'O' || c == 'o' || c == '*') patternGrid(i)(j) = 1
             j += 1
           }
         }

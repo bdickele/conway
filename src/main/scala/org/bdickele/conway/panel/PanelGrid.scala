@@ -43,7 +43,7 @@ class PanelGrid(listener: PanelGridListener) extends BoxPanel(Orientation.Vertic
   reactions += {
     case MouseClicked(_, point, _, _, _) =>
       if (!playing) {
-        grid.switchCell((point.x - gridCorner.x) / cellSize, (point.y - gridCorner.y) / cellSize)
+        grid.switchCell((point.y - gridCorner.y) / cellSize, (point.x - gridCorner.x) / cellSize)
         repaint()
       }
   }
@@ -90,7 +90,7 @@ class PanelGrid(listener: PanelGridListener) extends BoxPanel(Orientation.Vertic
       for {i <- 0 until Grid.size
            j <- 0 until Grid.size
            cellValue = grid.get(i, j)
-           if (cellValue != 0)
+           if cellValue != 0
            startX = gridCorner.x + (j * cellSize) + 1
            startY = gridCorner.y + (i * cellSize) + 1} {
         //println(i + "/"+j)
